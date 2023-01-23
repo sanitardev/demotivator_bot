@@ -37,13 +37,13 @@ def add_text(photo, text):
             if i == 1:
                 strip_height += 110
                 font_width -= 20
-            font = ImageFont.truetype("times.ttf", font_width)
+            font = ImageFont.truetype("font/times.ttf", font_width)
             text_width, text_height = draw.textsize(split_offers[i], font)
 
             position = ((strip_width - text_width) / 2, (strip_height - text_height) / 2)
             draw.text(position, split_offers[i], font=font)
     else:
-        font = ImageFont.truetype("times.ttf", font_width)
+        font = ImageFont.truetype("font/times.ttf", font_width)
         text_width, text_height = draw.textsize(text, font)
         strip_height = 1330
         position = ((strip_width - text_width) / 2, (strip_height - text_height) / 2)
