@@ -51,17 +51,6 @@ async def demotivator(message: types.Message):
                 photo_text = "чечня на связи"
             else:
                 photo_text = " ".join(photo_text)
-        else:
-            if not message.chat.type == "private":
-                return
-            if not message.photo == []:
-                id_file = await bot.get_file(message.photo[-1].file_id)
-                dowloaded_file_photo = await bot.download_file(id_file.file_path)
-                photo_text = message.caption
-                if photo_text is None:
-                    photo_text = "чечня на связи"
-            else:
-                return
     else:
         if not message.chat.type == "private":
             return
@@ -77,6 +66,17 @@ async def demotivator(message: types.Message):
                     return
             else:
                 return
+    if message.photo:
+        if not message.chat.type == "private":
+            return
+        if not message.photo == []:
+            id_file = await bot.get_file(message.photo[-1].file_id)
+            dowloaded_file_photo = await bot.download_file(id_file.file_path)
+            photo_text = message.caption
+            if photo_text is None:
+                photo_text = "чечня на связи"
+        else:
+            return
 
     img_byte = editor.add_text(dowloaded_file_photo, photo_text)
     img_byte.seek(0)
